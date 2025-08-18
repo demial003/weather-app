@@ -4,25 +4,27 @@ import { processData } from "./processData";
 import { convertTemp } from "./convertTemp";
 import { renderReport } from "./renderReport";
 
-// getData("london").then((response) => {
-//   let x = processData(response);
-//   console.log(response);
-//   console.log(x);
-//   renderReport(x);
-// });
-
 createForm();
 let report = {};
 const form = document.getElementById("weatherForm");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  const repDiv = document.getElementById("reportDiv");
+  console.log(repDiv);
+  if (repDiv) {
+    repDiv.remove();
+  }
+
   const city = document.getElementById("nameInput").value;
   getData(city).then((response) => {
     report = processData(response);
     renderReport(report);
     console.log(report);
-    form.remove();
   });
+
+  const inp = document.getElementById("nameInput");
+  inp.value = "";
 });
 
 document.addEventListener("click", (e) => {

@@ -40,6 +40,9 @@ const renderReport = (info) => {
     casts.appendChild(conditions);
   });
 
+  const inp = document.getElementById("nameInput");
+  inp.value = "";
+
   const btn = document.createElement("button");
   btn.id = "convertUnit";
   if (info.unit === "F") {
