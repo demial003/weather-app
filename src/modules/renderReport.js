@@ -5,39 +5,46 @@ const renderReport = (info) => {
   report.id = "reportDiv";
   container.appendChild(report);
 
+  const locationInfo = document.createElement("div");
+  locationInfo.id = "locationInfo";
+  report.appendChild(locationInfo);
   const name = document.createElement("div");
   name.className = "cityNameDiv";
   name.textContent = info.location;
-  report.appendChild(name);
+  locationInfo.appendChild(name);
   const coords = document.createElement("div");
   coords.className = "coordsDiv";
   coords.textContent = "coordinates: " + info.longitude + ", " + info.latitude;
-  report.appendChild(coords);
+  locationInfo.appendChild(coords);
 
   const casts = document.createElement("div");
   casts.id = "castsWrapper";
   report.appendChild(casts);
 
   info.forecasts.forEach((e) => {
+    const daily = document.createElement("div");
+    daily.className = "daily";
+    casts.appendChild(daily);
+
     const date = document.createElement("div");
     date.className = "dateDiv";
     date.textContent = e.date;
-    casts.appendChild(date);
+    daily.appendChild(date);
 
     const temp = document.createElement("div");
     temp.className = "tempDiv";
     temp.textContent = e.temp + " " + info.unit;
-    casts.appendChild(temp);
+    daily.appendChild(temp);
 
     const humidity = document.createElement("div");
     humidity.className = "humidityDiv";
     humidity.textContent = "humidity: " + e.humidity;
-    casts.appendChild(humidity);
+    daily.appendChild(humidity);
 
     const conditions = document.createElement("div");
     conditions.className = "conditionsDiv";
     conditions.textContent = e.conditions;
-    casts.appendChild(conditions);
+    daily.appendChild(conditions);
   });
 
   const inp = document.getElementById("nameInput");

@@ -1,5 +1,3 @@
-import { getWeather, processData, convertTemp } from "./index.js";
-
 const createForm = () => {
   const container = document.getElementById("container");
 

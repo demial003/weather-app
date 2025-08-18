@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#weatherForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#reportDiv {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#castsWrapper {
+  width: 1500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* gap: 25px; */
+}

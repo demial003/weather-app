@@ -1,8 +1,9 @@
-import { createForm } from "./form";
-import { getData } from "./getData";
-import { processData } from "./processData";
-import { convertTemp } from "./convertTemp";
-import { renderReport } from "./renderReport";
+import { createForm } from "./modules/form.js";
+import { getData } from "./modules/getData.js";
+import { processData } from "./modules/processData.js";
+import { convertTemp } from "./modules/convertTemp.js";
+import { renderReport } from "./modules/renderReport.js";
+import "./styles/styles.css";
 
 createForm();
 let report = {};
@@ -11,20 +12,19 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const repDiv = document.getElementById("reportDiv");
-  console.log(repDiv);
   if (repDiv) {
     repDiv.remove();
   }
-
   const city = document.getElementById("nameInput").value;
-  getData(city).then((response) => {
-    report = processData(response);
-    renderReport(report);
-    console.log(report);
-  });
-
-  const inp = document.getElementById("nameInput");
-  inp.value = "";
+  getData(city)
+    .then((response) => {
+      report = processData(response);
+      renderReport(report);
+      console.log(report);
+    })
+    .catch((error) => {
+      alert(error);
+    });
 });
 
 document.addEventListener("click", (e) => {
