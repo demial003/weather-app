@@ -10,6 +10,7 @@ const processData = (response) => {
     report.humidity = Math.round(day.humidity);
     report.date = day.datetime;
     report.conditions = day.conditions;
+    report.icon = day.icon;
 
     weatherReport.forecasts.push(report);
   });

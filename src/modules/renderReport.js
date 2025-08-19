@@ -1,3 +1,4 @@
+import { getImg } from "./getImg";
 const renderReport = (info) => {
   const container = document.getElementById("container");
 
@@ -45,6 +46,15 @@ const renderReport = (info) => {
     conditions.className = "conditionsDiv";
     conditions.textContent = e.conditions;
     daily.appendChild(conditions);
+
+    const icon = document.createElement("div");
+    icon.className = "iconDiv";
+    daily.appendChild(icon);
+
+    const iconImg = document.createElement("img");
+    iconImg.src = getImg(e.icon);
+    iconImg.alt = e.icon;
+    icon.appendChild(iconImg);
   });
 
   const inp = document.getElementById("nameInput");
