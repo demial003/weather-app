@@ -12,9 +12,9 @@ const createForm = () => {
   const name = document.createElement("input");
   name.type = "text";
   name.id = "nameInput";
+  name.placeholder = "enter city name";
   const nameLabel = document.createElement("label");
   nameLabel.setAttribute("for", "nameInput");
-  nameLabel.textContent = "enter city name";
   form.appendChild(nameLabel);
   form.appendChild(name);
 

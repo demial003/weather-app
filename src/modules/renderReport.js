@@ -1,4 +1,5 @@
 import { getImg } from "./getImg";
+import { getDate } from "./getDate";
 const renderReport = (info) => {
   const container = document.getElementById("container");
 
@@ -11,12 +12,17 @@ const renderReport = (info) => {
   report.appendChild(locationInfo);
   const name = document.createElement("div");
   name.className = "cityNameDiv";
-  name.textContent = info.location;
+  name.textContent = info.location.toUpperCase();
   locationInfo.appendChild(name);
-  const coords = document.createElement("div");
-  coords.className = "coordsDiv";
-  coords.textContent = "coordinates: " + info.longitude + ", " + info.latitude;
-  locationInfo.appendChild(coords);
+
+  const btn = document.createElement("button");
+  btn.id = "convertUnit";
+  if (info.unit === "F") {
+    btn.textContent = "convert to C";
+  } else {
+    btn.textContent = "convert to F";
+  }
+  locationInfo.appendChild(btn);
 
   const casts = document.createElement("div");
   casts.id = "castsWrapper";
@@ -29,7 +35,7 @@ const renderReport = (info) => {
 
     const date = document.createElement("div");
     date.className = "dateDiv";
-    date.textContent = e.date;
+    date.textContent = getDate(e.date);
     daily.appendChild(date);
 
     const temp = document.createElement("div");
@@ -59,15 +65,6 @@ const renderReport = (info) => {
 
   const inp = document.getElementById("nameInput");
   inp.value = "";
-
-  const btn = document.createElement("button");
-  btn.id = "convertUnit";
-  if (info.unit === "F") {
-    btn.textContent = "convert to C";
-  } else {
-    btn.textContent = "convert to F";
-  }
-  report.appendChild(btn);
 };
 
 export { renderReport };
