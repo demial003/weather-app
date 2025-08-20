@@ -10,7 +10,7 @@ const renderReport = (info) => {
   const locationInfo = document.createElement("div");
   locationInfo.id = "locationInfo";
   report.appendChild(locationInfo);
-  const name = document.createElement("div");
+  const name = document.createElement("h3");
   name.className = "cityNameDiv";
   name.textContent = info.location.toUpperCase();
   locationInfo.appendChild(name);
@@ -24,36 +24,36 @@ const renderReport = (info) => {
   }
   locationInfo.appendChild(btn);
 
-  const casts = document.createElement("div");
+  const casts = document.createElement("p");
   casts.id = "castsWrapper";
   report.appendChild(casts);
 
   info.forecasts.forEach((e) => {
-    const daily = document.createElement("div");
+    const daily = document.createElement("p");
     daily.className = "daily";
     casts.appendChild(daily);
 
-    const date = document.createElement("div");
+    const date = document.createElement("p");
     date.className = "dateDiv";
     date.textContent = getDate(e.date);
     daily.appendChild(date);
 
-    const temp = document.createElement("div");
+    const temp = document.createElement("p");
     temp.className = "tempDiv";
     temp.textContent = e.temp + " " + info.unit;
     daily.appendChild(temp);
 
-    const humidity = document.createElement("div");
+    const humidity = document.createElement("p");
     humidity.className = "humidityDiv";
     humidity.textContent = "humidity: " + e.humidity;
     daily.appendChild(humidity);
 
-    const conditions = document.createElement("div");
+    const conditions = document.createElement("p");
     conditions.className = "conditionsDiv";
     conditions.textContent = e.conditions;
     daily.appendChild(conditions);
 
-    const icon = document.createElement("div");
+    const icon = document.createElement("p");
     icon.className = "iconDiv";
     daily.appendChild(icon);
 
