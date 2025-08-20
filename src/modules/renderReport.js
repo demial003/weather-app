@@ -53,7 +53,7 @@ const renderReport = (info) => {
     conditions.textContent = e.conditions;
     daily.appendChild(conditions);
 
-    const icon = document.createElement("p");
+    const icon = document.createElement("div");
     icon.className = "iconDiv";
     daily.appendChild(icon);
 
