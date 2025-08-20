@@ -24,12 +24,12 @@ const renderReport = (info) => {
   }
   locationInfo.appendChild(btn);
 
-  const casts = document.createElement("p");
+  const casts = document.createElement("div");
   casts.id = "castsWrapper";
   report.appendChild(casts);
 
   info.forecasts.forEach((e) => {
-    const daily = document.createElement("p");
+    const daily = document.createElement("div");
     daily.className = "daily";
     casts.appendChild(daily);
 
