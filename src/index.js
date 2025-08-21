@@ -20,7 +20,6 @@ form.addEventListener("submit", (event) => {
     .then((response) => {
       report = processData(response);
       renderReport(report);
-      console.log(report);
     })
     .catch((error) => {
       alert(error);

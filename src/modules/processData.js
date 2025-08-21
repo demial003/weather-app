@@ -1,24 +1,27 @@
-const processData = (response) => {
+const processData = ({ address: location, days }) => {
   let weatherReport = {
+    location,
+    unit: "F",
     forecasts: [],
   };
 
-  let days = response.days;
-  days.forEach((day) => {
-    let report = {};
-    report.temp = Math.round(day.temp);
-    report.humidity = Math.round(day.humidity);
-    report.date = day.datetime;
-    report.conditions = day.conditions;
-    report.icon = day.icon;
+  // let days = response.days;
+  days.forEach(({ temp, humidity, datetime: date, conditions, icon }) => {
+    // report.temp =
+    // report.humidity = ;
+    // report.date = datetime;
+    // report.conditions = conditions;
+    // report.icon = icon;
 
-    weatherReport.forecasts.push(report);
+    weatherReport.forecasts.push({
+      temp,
+      humidity,
+      date,
+      conditions,
+      icon,
+    });
   });
 
-  weatherReport.location = response.address;
-  weatherReport.longitude = Math.round(response.longitude);
-  weatherReport.latitude = Math.round(response.latitude);
-  weatherReport.unit = "F";
   return weatherReport;
 };
 

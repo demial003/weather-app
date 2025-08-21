@@ -1,6 +1,6 @@
 import { getImg } from "./getImg";
 import { getDate } from "./getDate";
-const renderReport = (info) => {
+const renderReport = ({ location, forecasts, unit }) => {
   const container = document.getElementById("container");
 
   const report = document.createElement("div");
@@ -12,12 +12,12 @@ const renderReport = (info) => {
   report.appendChild(locationInfo);
   const name = document.createElement("h3");
   name.className = "cityNameDiv";
-  name.textContent = info.location.toUpperCase();
+  name.textContent = location.toUpperCase();
   locationInfo.appendChild(name);
 
   const btn = document.createElement("button");
   btn.id = "convertUnit";
-  if (info.unit === "F") {
+  if (unit === "F") {
     btn.textContent = "convert to C";
   } else {
     btn.textContent = "convert to F";
@@ -28,39 +28,39 @@ const renderReport = (info) => {
   casts.id = "castsWrapper";
   report.appendChild(casts);
 
-  info.forecasts.forEach((e) => {
+  forecasts.forEach(({ temp, date, humidity, conditions, icon }) => {
     const daily = document.createElement("div");
     daily.className = "daily";
     casts.appendChild(daily);
 
-    const date = document.createElement("p");
-    date.className = "dateDiv";
-    date.textContent = getDate(e.date);
-    daily.appendChild(date);
+    const dateEl = document.createElement("p");
+    dateEl.className = "dateDiv";
+    dateEl.textContent = getDate(date);
+    daily.appendChild(dateEl);
 
-    const temp = document.createElement("p");
-    temp.className = "tempDiv";
-    temp.textContent = e.temp + " " + info.unit;
-    daily.appendChild(temp);
+    const tempEl = document.createElement("p");
+    tempEl.className = "tempDiv";
+    tempEl.textContent = temp + " " + unit;
+    daily.appendChild(tempEl);
 
-    const humidity = document.createElement("p");
-    humidity.className = "humidityDiv";
-    humidity.textContent = "humidity: " + e.humidity;
-    daily.appendChild(humidity);
+    const humidityEl = document.createElement("p");
+    humidityEl.className = "humidityDiv";
+    humidityEl.textContent = "humidity: " + humidity;
+    daily.appendChild(humidityEl);
 
-    const conditions = document.createElement("p");
-    conditions.className = "conditionsDiv";
-    conditions.textContent = e.conditions;
-    daily.appendChild(conditions);
+    const conditionsEl = document.createElement("p");
+    conditionsEl.className = "conditionsDiv";
+    conditionsEl.textContent = conditions;
+    daily.appendChild(conditionsEl);
 
-    const icon = document.createElement("div");
-    icon.className = "iconDiv";
-    daily.appendChild(icon);
+    const iconDiv = document.createElement("div");
+    iconDiv.className = "iconDiv";
+    daily.appendChild(iconDiv);
 
     const iconImg = document.createElement("img");
-    iconImg.src = getImg(e.icon);
-    iconImg.alt = e.icon;
-    icon.appendChild(iconImg);
+    iconImg.src = getImg(icon);
+    iconImg.alt = icon;
+    iconDiv.appendChild(iconImg);
   });
 
   const inp = document.getElementById("nameInput");
